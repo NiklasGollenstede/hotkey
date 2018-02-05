@@ -16,7 +16,9 @@ module.exports = function({ options, /*packageJson,*/ manifestJson, files, }) {
 //		'native-ext/install.js',
 //		'native-ext/tar.js',
 		'native-ext/version-native.js',
+		'regexpx/index.js',
 		'web-ext-utils/browser/index.js',
+		'web-ext-utils/browser/storage.js',
 		'web-ext-utils/browser/version.js',
 		'web-ext-utils/lib/multiport/index.js',
 		'web-ext-utils/lib/pbq/require.js',
@@ -41,6 +43,8 @@ module.exports = function({ options, /*packageJson,*/ manifestJson, files, }) {
 		'web-ext-utils/utils/event.js',
 		'web-ext-utils/utils/files.js',
 		'web-ext-utils/utils/index.js',
+		'web-ext-utils/utils/icons/error.svg',
+		'web-ext-utils/utils/icons/success.svg',
 //		'web-ext-utils/utils/semver.js',
 	];
 
