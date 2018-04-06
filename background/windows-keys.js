@@ -1,14 +1,6 @@
 (function(global) { 'use strict'; const factory = function winapi_keys(exports) { // license: MIT
 
-exports.mod = {
-	MOD_ALT: 1,            Alt: 1,
-	MOD_CONTROL: 2,        Ctrl: 2,
-	MOD_NOREPEAT: 16384,
-	MOD_SHIFT: 4,          Shift: 4,
-	MOD_WIN: 8,            OS: 8,
-};
-
-exports.key = {
+return { // TODO: should only expose the 2nd column
 	VK_LBUTTON: 1,               //
 	VK_RBUTTON: 2,               //
 	VK_CANCEL: 3,                //

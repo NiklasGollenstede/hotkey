@@ -10,6 +10,7 @@ module.exports = function({ options, /*packageJson,*/ manifestJson, files, }) {
 
 	!options.viewRoot && (options.viewRoot = options.chrome ? 'HotKey.html' : 'HotKey');
 	delete manifestJson.browser_action;
+	delete manifestJson.background.persistent;
 
 	files.node_modules = [
 		'native-ext/index.js',
@@ -47,13 +48,4 @@ module.exports = function({ options, /*packageJson,*/ manifestJson, files, }) {
 		'web-ext-utils/utils/icons/success.svg',
 //		'web-ext-utils/utils/semver.js',
 	];
-
-	if (options.run && !(options.run.prefs === 0 || options.run.prefs === null)) {
-		const run = typeof options.run === 'object' ? options.run
-		: (options.run = { bin: typeof options.run === 'string' ? options.run : undefined, });
-		const prefs = {
-			// ...
-		};
-		run.prefs ? Object.assign(run.prefs, prefs) : (run.prefs = prefs);
-	}
 };

@@ -8,22 +8,22 @@
 }, ];*/
 
 return [ action(
-		[ 'Alt', 'Shift', 'KeyK', ],
-		`(document.querySelector(".spoticon-play-16") || document.querySelector(".spoticon-pause-16")).click()`,
+	[ 'Alt+Shift+KeyJ', 'Alt+Shift+KeyA', /*'Ctrl+Alt+KeyA',*/ ],
+	`document.querySelector(".spoticon-skip-back-16").click()`,
 ), action(
-		[ 'Alt', 'Shift', 'KeyJ', ],
-		`document.querySelector(".spoticon-skip-back-16").click()`,
+	[ 'Alt+Shift+KeyK', 'Alt+Shift+KeyS', /*'Ctrl+Alt+KeyS',*/ ],
+	`(document.querySelector(".spoticon-play-16") || document.querySelector(".spoticon-pause-16")).click()`,
 ), action(
-		[ 'Alt', 'Shift', 'KeyL', ],
-		`document.querySelector(".spoticon-skip-forward-16").click()`,
+	[ 'Alt+Shift+KeyL', 'Alt+Shift+KeyD', /*'Ctrl+Alt+KeyD',*/ ],
+	`document.querySelector(".spoticon-skip-forward-16").click()`,
 ), ];
 // 'document.querySelector(".spoticon-shuffle-16").click()';
 // 'document.querySelector(".spoticon-repeat-16").click()';
 
-function action(combo, code) { return {
-	combos: [ combo, ], repeat: false,
+function action(combos, code) { return {
+	combos: combos, repeat: false,
 	match: 'https://*.spotify.com/*', which: 'first', open: null,
-	code, when: 'document_end',
+	code,
 }; }
 
 }); })(this);

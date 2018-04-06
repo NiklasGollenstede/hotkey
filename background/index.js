@@ -1,7 +1,7 @@
 (function(global) { 'use strict'; define(async ({ // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 	'node_modules/web-ext-utils/browser/': { Tabs, },
 	'node_modules/web-ext-utils/browser/storage': Storage,
-	'node_modules/web-ext-utils/utils/': { reportError, /*reportSuccess,*/ },
+	'node_modules/web-ext-utils/utils/': { reportError, reportSuccess, },
 	'node_modules/native-ext/': Native,
 	'common/options': options,
 	Handlers,
@@ -16,26 +16,32 @@ Native.onUnhandledRejection(error => { reportError('Unhandled rejection in nativ
 
 const HotKeys = (await Native.require(require.resolve('./windows.native.js')));
 
-false && Handlers.forEach(({ combos, repeat, match, which, open, code, }) => combos.forEach(mods => {
-	HotKeys.register(mods[mods.length - 1], mods.slice(0, -1).concat(
-		repeat === false ? 'MOD_NOREPEAT' : [ ]
-	), async () => {
+Handlers.forEach(async ({ combos, repeat, match, which, open, code, }) => {
+	async function onkeypress(combo) { try {
+		console.info('keypress', combo);
 		let tabs = (await Tabs.query({ url: match, }));
 		if (tabs.length) { switch (which) {
 			case 'first': tabs = [ tabs[0], ]; break;
 			case 'last': tabs = [ tabs.pop(), ]; break;
 		} } else {
-			if (!open) { return; }
+			if (!open) { reportSuccess('Nothing to do', 'for '+ combo); return; }
 			tabs = [ (await Tabs.create({ url: open, })), ];
 		}
 		(await Promise.all(tabs.map(tab => Tabs.executeScript(tab.id, { code, runAt: 'document_start', }))));
-	}).catch(error => reportError('Failed to register HotKey', mods.join('+'), error));
-}));
+	} catch(error) {
+		reportError('Failed run HotKey action', combo, error);
+	} }
+
+	const unbind = (await Promise.all(combos.map(combo => HotKeys.register(combo, repeat, onkeypress).catch(
+		error => void reportError('Failed to register HotKey', combo, error)
+	))));
+	void unbind; // array of functions
+});
 
 global.addEventListener('unload', () => Native.nuke());
 
-// HotKeys.register('KeyB', [ 'Alt', ], () => reportSuccess('Keypress', 'Alt+B'));
-// HotKeys.register('KeyC', [ 'Alt', ], () => reportError('Keypress', 'Alt+C'));
+// HotKeys.register('Alt+KeyB', false, combo => reportSuccess('Keypress', combo));
+// HotKeys.register('Alt+KeyC', false, combo => reportError('Keypress', combo));
 
 // debug stuff
 Object.assign(global, module.exports = {
