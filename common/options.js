@@ -53,13 +53,13 @@ const model = {
 				maxLength: Infinity,
 				default: [ ],
 				restrict: { match: {
-					exp: (/^(?:\^\S*\$|<all_urls>|(?:(\*|http|https|file|ftp|app):\/\/(\*|(?:\*\.)?[^\/\*\ ]+|)\/(\S*)))$/i),
+					exp: (/^(?:\^\S*\$|<all_urls>|(?:(\*|http|https|file|ftp|app):\/\/(\*|(?:\*\.)?[^/* ]+|)\/(\S*)))$/i),
 					message: `Each pattern must be of the form <scheme>://<host>/<path> or be framed with '^' and '$'`,
 				}, },
 				input: { type: 'string', default: 'https://*.example.com/*', },
 				children: {
 					title: `Examples`,
-					description: `<ul>
+					description: String.raw`<ul>
 						<li><code>https://*.wikipedia.org/*</code>: Matches all Wikipedia pages</li>
 						<li><code>https://www.whatever.web/sites.html</code>: Matches exactly that site</li>
 						<li><code>&lt;all_urls&gt;</code>: Matches every URL</li>

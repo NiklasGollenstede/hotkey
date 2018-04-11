@@ -14,7 +14,7 @@ Native.onUnhandledRejection(error => { reportError('Unhandled rejection in nativ
 
 (await new Promise(done => global.setTimeout(done, 2000))); // wait for previous process to exit
 
-const HotKeys = (await Native.require(require.resolve('./windows.native.js')));
+const HotKeys = (await Native.require(require.resolve('./windows/native.js')));
 
 Handlers.forEach(async ({ combos, repeat, match, which, open, code, }) => {
 	async function onkeypress(combo) { try {
