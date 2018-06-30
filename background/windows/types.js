@@ -1,10 +1,13 @@
 /* eslint-env node */ /* eslint-disable strict */ 'use strict'; /* globals require, exports, process, */ // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// FFI native functions and types
-// The type names are intentionally close to the names in C.
+/**
+ * FFI native functions and types
+ * The type names are intentionally close to the names in C.
+ */
 
 const WM_HOTKEY = 0x0312;
 const _WIN64 = process.arch === 'x64';
+{ process.argv[0] = process.argv0; /* bugfix for native-ext v0.3.1 */ }
 const { types, refType, } = require('ref'), Struct = require('ref-struct');
 const {
 	int, uint, long, ulong,

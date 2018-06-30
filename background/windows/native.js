@@ -15,7 +15,7 @@
 function register(combo, repeat, action) {
 	typeof combo !== 'string' && invalid();
 	action = action.bind(null, combo); // throw if no function
-	const match = (/^(OS\+)?(Ctrl\+)?(Alt\+)?(Shift\+)?([A-Za-z0-9]+)$/).exec(combo); !match && invalid();
+	const match = (/^(OS ?\+ ?)?(Ctrl ?\+ ?)?(Alt ?\+ ?)?(Shift ?\+ ?)?([A-Za-z0-9]+)$/).exec(combo); !match && invalid();
 	const [ , os, ctrl, alt, shift, keyName, ] = match;
 	const key = KEYS[keyName]; !key && invalid();
 	let mods = 0; os && (mods |= 8); ctrl && (mods |= 1); alt && (mods |= 1); shift && (mods |= 4); !repeat && (mods |= 16384);

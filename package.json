@@ -16,10 +16,12 @@
 	} ],
 	"dependencies": {
 		"es6lib": "0.0.2",
-		"native-ext": "0.2.4",
-		"regexpx": "^0.1.4",
-		"web-ext-build": "0.0.8",
-		"web-ext-utils": "0.0.18"
+		"multiport": "0.2.3",
+		"native-ext": "0.3.1",
+		"pbq": "0.3.3",
+		"regexpx": "0.1.4",
+		"web-ext-build": "0.0.9",
+		"web-ext-utils": "0.1.4"
 	},
 	"devDependencies": {
 		"babel-eslint": "8.2.2",

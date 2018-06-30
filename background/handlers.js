@@ -8,13 +8,13 @@
 }, ];*/
 
 return [ action(
-	[ 'Alt+Shift+KeyJ', 'Alt+Shift+KeyA', /*'Ctrl+Alt+KeyA',*/ ],
+	[ 'Alt + Shift + KeyJ', 'Alt + Shift + KeyA', /*'Ctrl + Alt + KeyA',*/ ],
 	`document.querySelector(".spoticon-skip-back-16").click()`,
 ), action(
-	[ 'Alt+Shift+KeyK', 'Alt+Shift+KeyS', /*'Ctrl+Alt+KeyS',*/ ],
+	[ 'Alt + Shift + KeyK', 'Alt + Shift + KeyS', /*'Ctrl + Alt + KeyS',*/ ],
 	`(document.querySelector(".spoticon-play-16") || document.querySelector(".spoticon-pause-16")).click()`,
 ), action(
-	[ 'Alt+Shift+KeyL', 'Alt+Shift+KeyD', /*'Ctrl+Alt+KeyD',*/ ],
+	[ 'Alt + Shift + KeyL', 'Alt + Shift + KeyD', /*'Ctrl + Alt + KeyD',*/ ],
 	`document.querySelector(".spoticon-skip-forward-16").click()`,
 ), ];
 // 'document.querySelector(".spoticon-shuffle-16").click()';

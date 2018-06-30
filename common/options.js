@@ -32,8 +32,8 @@ const model = {
 				default: true, restrict: { type: 'boolean', },
 				input: { type: 'menulist', prefix: `When any of the key combinations
 				<b>Key Combos</b> is pressed`, options: [
-					{ value: true,     label: `globally, choose *Match* tab(s) matching *Match* or open *Open* and`, },
-					{ value: false,    label: `in a tab matching *Match*`, },
+					{ value: true,  label: `globally, choose *Match* tab(s) matching *Match* or open *Open* and`, },
+					{ value: false, label: `in a tab matching *Match*`, },
 				], suffix: `execute <b>Action</b> (<b>Repeat</b>).`, },
 			},
 			combos: {
